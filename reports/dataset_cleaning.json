@@ -1,0 +1,41 @@
+{
+  "normalization": "lowercase and collapse whitespace",
+  "priority": [
+    "test",
+    "validation",
+    "train"
+  ],
+  "conflicting_unique_texts": 51,
+  "splits": {
+    "test": {
+      "original_rows": 2000,
+      "clean_rows": 1986,
+      "removed": {
+        "empty": 0,
+        "conflicting_labels": 14,
+        "within_split_duplicates": 0,
+        "cross_split_duplicates": 0
+      }
+    },
+    "validation": {
+      "original_rows": 2000,
+      "clean_rows": 1988,
+      "removed": {
+        "empty": 0,
+        "conflicting_labels": 12,
+        "within_split_duplicates": 0,
+        "cross_split_duplicates": 0
+      }
+    },
+    "train": {
+      "original_rows": 16000,
+      "clean_rows": 15923,
+      "removed": {
+        "empty": 0,
+        "conflicting_labels": 76,
+        "within_split_duplicates": 1,
+        "cross_split_duplicates": 0
+      }
+    }
+  }
+}
