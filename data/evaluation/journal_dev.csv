@@ -1,0 +1,12 @@
+id,text,sentiment
+dev_01,"I am feeling pretty low today.",negative
+dev_02,"Life hasn't been kind lately.",negative
+dev_03,"I am not happy with how today went.",negative
+dev_04,"I smiled at everyone today but felt lonely inside.",negative
+dev_05,"Wonderful, another deadline missed and another night without sleep.",negative
+dev_06,"I feel relieved and grateful that my friends supported me.",positive
+dev_07,"I was nervous earlier but now I feel happy about my progress.",positive
+dev_08,"I am proud of myself for finishing a difficult assignment.",positive
+dev_09,"I attended two lectures and returned home at five.",neutral
+dev_10,"My exam is scheduled for Monday morning.",neutral
+dev_11,"I wrote down tomorrow's tasks in my notebook.",neutral
