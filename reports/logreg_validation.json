@@ -1,0 +1,120 @@
+{
+  "model": "TF-IDF + Logistic Regression",
+  "dataset": "DAIR-AI Emotion \u2014 cleaned split configuration",
+  "evaluation_split": "validation",
+  "train_rows": 15923,
+  "validation_rows": 1988,
+  "labels": [
+    "sadness",
+    "joy",
+    "love",
+    "anger",
+    "fear",
+    "surprise"
+  ],
+  "accuracy": 0.8329979879275654,
+  "macro_f1": 0.7554160113967,
+  "training_seconds": 3.2350496999999905,
+  "sklearn_version": "1.9.1",
+  "classification_report": {
+    "sadness": {
+      "precision": 0.8197767145135566,
+      "recall": 0.9345454545454546,
+      "f1-score": 0.8734069668649108,
+      "support": 550.0
+    },
+    "joy": {
+      "precision": 0.7927400468384075,
+      "recall": 0.9671428571428572,
+      "f1-score": 0.8712998712998713,
+      "support": 700.0
+    },
+    "love": {
+      "precision": 0.9175257731958762,
+      "recall": 0.5144508670520231,
+      "f1-score": 0.6592592592592592,
+      "support": 173.0
+    },
+    "anger": {
+      "precision": 0.9363636363636364,
+      "recall": 0.7518248175182481,
+      "f1-score": 0.8340080971659919,
+      "support": 274.0
+    },
+    "fear": {
+      "precision": 0.8860759493670886,
+      "recall": 0.6635071090047393,
+      "f1-score": 0.7588075880758808,
+      "support": 211.0
+    },
+    "surprise": {
+      "precision": 0.9375,
+      "recall": 0.375,
+      "f1-score": 0.5357142857142857,
+      "support": 80.0
+    },
+    "accuracy": 0.8329979879275654,
+    "macro avg": {
+      "precision": 0.8816636867130941,
+      "recall": 0.7010785175438871,
+      "f1-score": 0.7554160113967,
+      "support": 1988.0
+    },
+    "weighted avg": {
+      "precision": 0.8466060594629377,
+      "recall": 0.8329979879275654,
+      "f1-score": 0.822846758602665,
+      "support": 1988.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      514,
+      28,
+      0,
+      4,
+      3,
+      1
+    ],
+    [
+      12,
+      677,
+      7,
+      3,
+      1,
+      0
+    ],
+    [
+      23,
+      59,
+      89,
+      2,
+      0,
+      0
+    ],
+    [
+      34,
+      29,
+      1,
+      206,
+      4,
+      0
+    ],
+    [
+      29,
+      37,
+      0,
+      4,
+      140,
+      1
+    ],
+    [
+      15,
+      24,
+      0,
+      1,
+      10,
+      30
+    ]
+  ]
+}
