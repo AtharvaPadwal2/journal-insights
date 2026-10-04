@@ -1,0 +1,752 @@
+{
+  "model_classes": {
+    "LogReg": [
+      "sadness",
+      "joy",
+      "love",
+      "anger",
+      "fear",
+      "surprise"
+    ],
+    "LinearSVC": [
+      "sadness",
+      "joy",
+      "love",
+      "anger",
+      "fear",
+      "surprise"
+    ],
+    "DistilBERT": [
+      "sadness",
+      "joy",
+      "love",
+      "anger",
+      "fear",
+      "surprise"
+    ],
+    "Hartmann": [
+      "anger",
+      "disgust",
+      "fear",
+      "joy",
+      "neutral",
+      "sadness",
+      "surprise"
+    ]
+  },
+  "results": [
+    {
+      "id": "1",
+      "text": "Had two lectures in the morning and a lab after lunch. Took the 5:40 local back home and reheated yesterday's dal for dinner.",
+      "category": "routine",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "neutral",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "2",
+      "text": "Spent most of the day sorting notes for the economics test. Stopped at the stationery shop to buy a new pen refill and a highlighter.",
+      "category": "routine",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "neutral",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "3",
+      "text": "The bus took the longer route today because of road work near the station. Reached office at 9:30, answered emails, and had lunch at my desk.",
+      "category": "routine",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "fear",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "neutral",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "4",
+      "text": "Washed clothes, cleaned the desk, and paid the electricity bill online. Then I went through the grocery list for the weekend.",
+      "category": "routine",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "neutral",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "5",
+      "text": "Attended the group project call at 4 pm. We split the slides into sections and agreed to meet again on Thursday.",
+      "category": "routine",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "neutral",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "6",
+      "text": "The house felt painfully quiet after Dadi's phone call ended. I kept looking at her old photo and crying until my chest hurt.",
+      "category": "clear_emotion",
+      "proposed_labels": [
+        "sadness"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "7",
+      "text": "I got the internship offer today and I couldn't stop smiling! I danced around my room and called everyone I know.",
+      "category": "clear_emotion",
+      "proposed_labels": [
+        "joy"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "8",
+      "text": "He took credit for my work in front of the whole team again. I'm so furious I can barely type this properly.",
+      "category": "clear_emotion",
+      "proposed_labels": [
+        "anger"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "9",
+      "text": "My hands were shaking as I waited outside the doctor's cabin. Every worst-case scenario kept running through my head.",
+      "category": "clear_emotion",
+      "proposed_labels": [
+        "fear"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "fear",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "fear",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "10",
+      "text": "Watching my sister laugh at her own joke made my heart feel so full. I'd do anything to keep her this happy.",
+      "category": "clear_emotion",
+      "proposed_labels": [
+        "love",
+        "joy"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": [
+            "love"
+          ]
+        }
+      }
+    },
+    {
+      "id": "11",
+      "text": "I'm not happy with how the week went, even though everyone says it was a success. Something feels hollow.",
+      "category": "negation_context",
+      "proposed_labels": [
+        "sadness"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "12",
+      "text": "I used to dread speaking in front of the class, but I'm no longer afraid of it. Today I finished my presentation without my voice trembling.",
+      "category": "negation_context",
+      "proposed_labels": [
+        "unclear"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "fear",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "unclear"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "fear",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "unclear"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "fear",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "unclear"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "fear",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "unclear"
+          ]
+        }
+      }
+    },
+    {
+      "id": "13",
+      "text": "I was so worried about the results all morning, but now that I've seen them, I feel calm. Whatever comes next, I can handle it.",
+      "category": "negation_context",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "joy",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "14",
+      "text": "I'm not angry at Rhea anymore. The argument still sits in my mind, but the heat has gone out of it.",
+      "category": "negation_context",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "anger",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "15",
+      "text": "I didn't feel sad when the trip got cancelled, honestly. I just shrugged and started a new book.",
+      "category": "negation_context",
+      "proposed_labels": [
+        "neutral"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "DistilBERT": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": [
+            "neutral"
+          ]
+        },
+        "Hartmann": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "16",
+      "text": "Saying goodbye to my hostel friends made me tear up at the station. Still, I'm so thankful for these four years and everyone who made them special.",
+      "category": "mixed",
+      "proposed_labels": [
+        "sadness",
+        "joy"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "17",
+      "text": "Tomorrow I move to a new city alone, and my stomach is in knots. But I'm also thrilled about starting something new.",
+      "category": "mixed",
+      "proposed_labels": [
+        "fear",
+        "joy"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "joy",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "18",
+      "text": "I'm so annoyed that Papa never listens when I explain my side. Still, I know he stays up worrying about me, and I love him for it.",
+      "category": "mixed",
+      "proposed_labels": [
+        "anger",
+        "love"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "anger",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": [
+            "love"
+          ]
+        }
+      }
+    },
+    {
+      "id": "19",
+      "text": "My best friend's wedding was beautiful and I cried happy tears. Walking home alone afterwards, I felt a little left behind.",
+      "category": "mixed",
+      "proposed_labels": [
+        "joy",
+        "sadness"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    },
+    {
+      "id": "20",
+      "text": "I opened the door and the entire family was there for my birthday! I was stunned, and then I couldn't stop laughing.",
+      "category": "mixed",
+      "proposed_labels": [
+        "surprise",
+        "joy"
+      ],
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "prediction": "sadness",
+          "matches_any_proposed_label": false,
+          "unsupported_proposed_labels": []
+        },
+        "LinearSVC": {
+          "prediction": "surprise",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "DistilBERT": {
+          "prediction": "surprise",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        },
+        "Hartmann": {
+          "prediction": "surprise",
+          "matches_any_proposed_label": true,
+          "unsupported_proposed_labels": []
+        }
+      }
+    }
+  ],
+  "notes": [
+    "AI-proposed labels; human review pending.",
+    "Models predict one label per entry.",
+    "Matching one proposed label does not capture every emotion.",
+    "These examples are not used for training.",
+    "This comparison does not establish journal-wide accuracy."
+  ]
+}
