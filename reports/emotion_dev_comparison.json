@@ -1,0 +1,158 @@
+{
+  "evaluation_file": "data\\evaluation\\emotion_dev.csv",
+  "summaries": {
+    "LogReg": {
+      "model_metadata": {
+        "model_name": "tfidf_logreg",
+        "version": "baseline-1",
+        "sklearn_version": "1.9.1",
+        "dataset": "DAIR-AI Emotion — cleaned split configuration"
+      },
+      "total_rows": 6,
+      "supported_label_rows": 2,
+      "unsupported_label_rows": 4,
+      "matches_on_supported_proposed_labels": 1,
+      "human_reviewed_supported_rows": 0,
+      "human_reviewed_matches": 0,
+      "human_reviewed_supported_accuracy": null
+    },
+    "LinearSVC": {
+      "model_metadata": {
+        "model_name": "tfidf_linear_svc",
+        "version": "baseline-svm-1",
+        "sklearn_version": "1.9.1",
+        "dataset": "DAIR-AI Emotion — cleaned split configuration",
+        "score_type": "uncalibrated decision margins"
+      },
+      "total_rows": 6,
+      "supported_label_rows": 2,
+      "unsupported_label_rows": 4,
+      "matches_on_supported_proposed_labels": 1,
+      "human_reviewed_supported_rows": 0,
+      "human_reviewed_matches": 0,
+      "human_reviewed_supported_accuracy": null
+    }
+  },
+  "examples": [
+    {
+      "id": "emo_01",
+      "text": "I am not happy with how today went.",
+      "emotion": "unclear",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        },
+        "LinearSVC": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        }
+      }
+    },
+    {
+      "id": "emo_02",
+      "text": "I thought I would panic, but I feel calm now.",
+      "emotion": "neutral",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        },
+        "LinearSVC": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        }
+      }
+    },
+    {
+      "id": "emo_03",
+      "text": "I miss her, but I am grateful for the time we shared.",
+      "emotion": "mixed",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        },
+        "LinearSVC": {
+          "emotion": "anger",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        }
+      }
+    },
+    {
+      "id": "emo_04",
+      "text": "I cannot believe they blamed me for their mistake.",
+      "emotion": "anger",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "sadness",
+          "expected_label_supported": true,
+          "matches_proposed_label": false
+        },
+        "LinearSVC": {
+          "emotion": "sadness",
+          "expected_label_supported": true,
+          "matches_proposed_label": false
+        }
+      }
+    },
+    {
+      "id": "emo_05",
+      "text": "I feel nervous about tomorrow, even though I prepared well.",
+      "emotion": "fear",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "fear",
+          "expected_label_supported": true,
+          "matches_proposed_label": true
+        },
+        "LinearSVC": {
+          "emotion": "fear",
+          "expected_label_supported": true,
+          "matches_proposed_label": true
+        }
+      }
+    },
+    {
+      "id": "emo_06",
+      "text": "I attended classes and came home at five.",
+      "emotion": "neutral",
+      "label_source": "ai_proposed",
+      "review_status": "pending",
+      "predictions": {
+        "LogReg": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        },
+        "LinearSVC": {
+          "emotion": "joy",
+          "expected_label_supported": false,
+          "matches_proposed_label": null
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Development examples are not used for training by this script.",
+    "Pending AI-proposed labels are not human-reviewed ground truth.",
+    "Unsupported labels are reported separately, not silently discarded.",
+    "These results do not establish journal-wide accuracy."
+  ]
+}
