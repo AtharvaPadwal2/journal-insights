@@ -1,0 +1,7 @@
+id,text,emotion,label_source,review_status
+emo_01,"I am not happy with how today went.",unclear,ai_proposed,pending
+emo_02,"I thought I would panic, but I feel calm now.",neutral,ai_proposed,pending
+emo_03,"I miss her, but I am grateful for the time we shared.",mixed,ai_proposed,pending
+emo_04,"I cannot believe they blamed me for their mistake.",anger,ai_proposed,pending
+emo_05,"I feel nervous about tomorrow, even though I prepared well.",fear,ai_proposed,pending
+emo_06,"I attended classes and came home at five.",neutral,ai_proposed,pending
