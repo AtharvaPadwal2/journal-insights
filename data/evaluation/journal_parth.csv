@@ -1,0 +1,22 @@
+id,text,category
+1,"Had two lectures in the morning and a lab after lunch. Took the 5:40 local back home and reheated yesterday's dal for dinner.",routine
+2,"Spent most of the day sorting notes for the economics test. Stopped at the stationery shop to buy a new pen refill and a highlighter.",routine
+3,"The bus took the longer route today because of road work near the station. Reached office at 9:30, answered emails, and had lunch at my desk.",routine
+4,"Washed clothes, cleaned the desk, and paid the electricity bill online. Then I went through the grocery list for the weekend.",routine
+5,"Attended the group project call at 4 pm. We split the slides into sections and agreed to meet again on Thursday.",routine
+6,"The house felt painfully quiet after Dadi's phone call ended. I kept looking at her old photo and crying until my chest hurt.",clear_emotion
+7,"I got the internship offer today and I couldn't stop smiling! I danced around my room and called everyone I know.",clear_emotion
+8,"He took credit for my work in front of the whole team again. I'm so furious I can barely type this properly.",clear_emotion
+9,"My hands were shaking as I waited outside the doctor's cabin. Every worst-case scenario kept running through my head.",clear_emotion
+10,"Watching my sister laugh at her own joke made my heart feel so full. I'd do anything to keep her this happy.",clear_emotion
+11,"I'm not happy with how the week went, even though everyone says it was a success. Something feels hollow.",negation_context
+12,"I used to dread speaking in front of the class, but I'm no longer afraid of it. Today I finished my presentation without my voice trembling.",negation_context
+13,"I was so worried about the results all morning, but now that I've seen them, I feel calm. Whatever comes next, I can handle it.",negation_context
+14,"I'm not angry at Rhea anymore. The argument still sits in my mind, but the heat has gone out of it.",negation_context
+15,"I didn't feel sad when the trip got cancelled, honestly. I just shrugged and started a new book.",negation_context
+16,"Saying goodbye to my hostel friends made me tear up at the station. Still, I'm so thankful for these four years and everyone who made them special.",mixed
+17,"Tomorrow I move to a new city alone, and my stomach is in knots. But I'm also thrilled about starting something new.",mixed
+18,"I'm so annoyed that Papa never listens when I explain my side. Still, I know he stays up worrying about me, and I love him for it.",mixed
+19,"My best friend's wedding was beautiful and I cried happy tears. Walking home alone afterwards, I felt a little left behind.",mixed
+20,"I opened the door and the entire family was there for my birthday! I was stunned, and then I couldn't stop laughing.",mixed
+
