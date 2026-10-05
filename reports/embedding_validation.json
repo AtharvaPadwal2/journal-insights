@@ -1,0 +1,266 @@
+{
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "classifier": "OneVsRest Logistic Regression",
+  "classifier_parameters": {
+    "C": 1.0,
+    "class_weight": null
+  },
+  "labels": [
+    "anger",
+    "anticipation",
+    "disgust",
+    "fear",
+    "joy",
+    "love",
+    "optimism",
+    "pessimism",
+    "sadness",
+    "surprise",
+    "trust"
+  ],
+  "train_rows": 6836,
+  "validation_rows": 886,
+  "evaluation_split": "validation",
+  "threshold_selection": "training-only 3-fold OOF",
+  "thresholds": [
+    0.35,
+    0.2,
+    0.35,
+    0.35,
+    0.39999999999999997,
+    0.2,
+    0.3,
+    0.2,
+    0.35,
+    0.15,
+    0.1
+  ],
+  "training_and_cv_seconds": 1.711959599999318,
+  "sklearn_version": "1.9.1",
+  "cache_metadata": {
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+    "max_seq_length": 256,
+    "normalized": true,
+    "labels": [
+      "anger",
+      "anticipation",
+      "disgust",
+      "fear",
+      "joy",
+      "love",
+      "optimism",
+      "pessimism",
+      "sadness",
+      "surprise",
+      "trust"
+    ],
+    "splits": {
+      "train": {
+        "rows": 6836,
+        "source_sha256": "f37eff4cd1ffb0b3199296e9b25964e2c01addeffc2150dd370c94bf4324fab7"
+      },
+      "validation": {
+        "rows": 886,
+        "source_sha256": "f94f5a9e3e3df35e40bced1e879538fabe1cac4812a467eae37d95470768a58d"
+      }
+    }
+  },
+  "fixed_0_5": {
+    "macro_f1": 0.4338284493524433,
+    "micro_f1": 0.6209565938623168,
+    "exact_match_accuracy": 0.2054176072234763,
+    "hamming_loss": 0.14067309665503797,
+    "neutral_detection_f1": 0.08620689655172414,
+    "classification_report": {
+      "anger": {
+        "precision": 0.7509025270758123,
+        "recall": 0.6603174603174603,
+        "f1-score": 0.7027027027027027,
+        "support": 315.0
+      },
+      "anticipation": {
+        "precision": 0.5,
+        "recall": 0.03225806451612903,
+        "f1-score": 0.06060606060606061,
+        "support": 124.0
+      },
+      "disgust": {
+        "precision": 0.7298245614035088,
+        "recall": 0.6520376175548589,
+        "f1-score": 0.6887417218543046,
+        "support": 319.0
+      },
+      "fear": {
+        "precision": 0.8148148148148148,
+        "recall": 0.5454545454545454,
+        "f1-score": 0.6534653465346535,
+        "support": 121.0
+      },
+      "joy": {
+        "precision": 0.865625,
+        "recall": 0.6925,
+        "f1-score": 0.7694444444444445,
+        "support": 400.0
+      },
+      "love": {
+        "precision": 0.6710526315789473,
+        "recall": 0.38636363636363635,
+        "f1-score": 0.49038461538461536,
+        "support": 132.0
+      },
+      "optimism": {
+        "precision": 0.7798165137614679,
+        "recall": 0.5537459283387622,
+        "f1-score": 0.6476190476190476,
+        "support": 307.0
+      },
+      "pessimism": {
+        "precision": 0.7142857142857143,
+        "recall": 0.1,
+        "f1-score": 0.17543859649122806,
+        "support": 100.0
+      },
+      "sadness": {
+        "precision": 0.7288135593220338,
+        "recall": 0.4867924528301887,
+        "f1-score": 0.583710407239819,
+        "support": 265.0
+      },
+      "surprise": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 35.0
+      },
+      "trust": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 43.0
+      },
+      "micro avg": {
+        "precision": 0.7712912087912088,
+        "recall": 0.5196668209162425,
+        "f1-score": 0.6209565938623168,
+        "support": 2161.0
+      },
+      "macro avg": {
+        "precision": 0.5959213929311181,
+        "recall": 0.3735881550341437,
+        "f1-score": 0.4338284493524433,
+        "support": 2161.0
+      },
+      "weighted avg": {
+        "precision": 0.7259313768863002,
+        "recall": 0.5196668209162425,
+        "f1-score": 0.5882457803165149,
+        "support": 2161.0
+      },
+      "samples avg": {
+        "precision": 0.684255079006772,
+        "recall": 0.5405379984951091,
+        "f1-score": 0.5677845856175426,
+        "support": 2161.0
+      }
+    }
+  },
+  "oof_tuned": {
+    "macro_f1": 0.5367248195398366,
+    "micro_f1": 0.6423264699639143,
+    "exact_match_accuracy": 0.14446952595936793,
+    "hamming_loss": 0.17289144264313563,
+    "neutral_detection_f1": 0.0,
+    "classification_report": {
+      "anger": {
+        "precision": 0.6684073107049608,
+        "recall": 0.8126984126984127,
+        "f1-score": 0.7335243553008596,
+        "support": 315.0
+      },
+      "anticipation": {
+        "precision": 0.3170731707317073,
+        "recall": 0.41935483870967744,
+        "f1-score": 0.3611111111111111,
+        "support": 124.0
+      },
+      "disgust": {
+        "precision": 0.6507537688442211,
+        "recall": 0.8119122257053292,
+        "f1-score": 0.7224546722454672,
+        "support": 319.0
+      },
+      "fear": {
+        "precision": 0.6403508771929824,
+        "recall": 0.6033057851239669,
+        "f1-score": 0.6212765957446809,
+        "support": 121.0
+      },
+      "joy": {
+        "precision": 0.8265582655826558,
+        "recall": 0.7625,
+        "f1-score": 0.7932379713914174,
+        "support": 400.0
+      },
+      "love": {
+        "precision": 0.49710982658959535,
+        "recall": 0.6515151515151515,
+        "f1-score": 0.5639344262295082,
+        "support": 132.0
+      },
+      "optimism": {
+        "precision": 0.6574585635359116,
+        "recall": 0.7752442996742671,
+        "f1-score": 0.7115097159940209,
+        "support": 307.0
+      },
+      "pessimism": {
+        "precision": 0.31851851851851853,
+        "recall": 0.43,
+        "f1-score": 0.3659574468085106,
+        "support": 100.0
+      },
+      "sadness": {
+        "precision": 0.6026936026936027,
+        "recall": 0.6754716981132075,
+        "f1-score": 0.6370106761565836,
+        "support": 265.0
+      },
+      "surprise": {
+        "precision": 0.23333333333333334,
+        "recall": 0.2,
+        "f1-score": 0.2153846153846154,
+        "support": 35.0
+      },
+      "trust": {
+        "precision": 0.12,
+        "recall": 0.3488372093023256,
+        "f1-score": 0.17857142857142858,
+        "support": 43.0
+      },
+      "micro avg": {
+        "precision": 0.5933333333333334,
+        "recall": 0.7001388246182323,
+        "f1-score": 0.6423264699639143,
+        "support": 2161.0
+      },
+      "macro avg": {
+        "precision": 0.5029324761570445,
+        "recall": 0.5900763291674852,
+        "f1-score": 0.5367248195398366,
+        "support": 2161.0
+      },
+      "weighted avg": {
+        "precision": 0.6191171633619569,
+        "recall": 0.7001388246182323,
+        "f1-score": 0.6535234061487107,
+        "support": 2161.0
+      },
+      "samples avg": {
+        "precision": 0.6035741158765989,
+        "recall": 0.711869826937547,
+        "f1-score": 0.6179458239277652,
+        "support": 2161.0
+      }
+    }
+  }
+}
