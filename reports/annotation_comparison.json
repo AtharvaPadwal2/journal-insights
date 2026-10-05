@@ -1,0 +1,238 @@
+{
+  "entries": 20,
+  "exact_agreements": 18,
+  "results": [
+    {
+      "id": "1",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "2",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "3",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "4",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "5",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "6",
+      "chatgpt_labels": [
+        "sadness"
+      ],
+      "claude_labels": [
+        "sadness"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "7",
+      "chatgpt_labels": [
+        "joy"
+      ],
+      "claude_labels": [
+        "joy"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "8",
+      "chatgpt_labels": [
+        "anger"
+      ],
+      "claude_labels": [
+        "anger"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "9",
+      "chatgpt_labels": [
+        "fear"
+      ],
+      "claude_labels": [
+        "fear"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "10",
+      "chatgpt_labels": [
+        "joy",
+        "love"
+      ],
+      "claude_labels": [
+        "love"
+      ],
+      "exact_agreement": false,
+      "human_review": "pending"
+    },
+    {
+      "id": "11",
+      "chatgpt_labels": [
+        "sadness"
+      ],
+      "claude_labels": [
+        "sadness"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "12",
+      "chatgpt_labels": [
+        "unclear"
+      ],
+      "claude_labels": [
+        "joy"
+      ],
+      "exact_agreement": false,
+      "human_review": "pending"
+    },
+    {
+      "id": "13",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "14",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "15",
+      "chatgpt_labels": [
+        "neutral"
+      ],
+      "claude_labels": [
+        "neutral"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "16",
+      "chatgpt_labels": [
+        "joy",
+        "sadness"
+      ],
+      "claude_labels": [
+        "joy",
+        "sadness"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "17",
+      "chatgpt_labels": [
+        "fear",
+        "joy"
+      ],
+      "claude_labels": [
+        "fear",
+        "joy"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "18",
+      "chatgpt_labels": [
+        "anger",
+        "love"
+      ],
+      "claude_labels": [
+        "anger",
+        "love"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "19",
+      "chatgpt_labels": [
+        "joy",
+        "sadness"
+      ],
+      "claude_labels": [
+        "joy",
+        "sadness"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    },
+    {
+      "id": "20",
+      "chatgpt_labels": [
+        "joy",
+        "surprise"
+      ],
+      "claude_labels": [
+        "joy",
+        "surprise"
+      ],
+      "exact_agreement": true,
+      "human_review": "pending"
+    }
+  ],
+  "note": "Agreement between AI annotations is not accuracy or human validation."
+}
