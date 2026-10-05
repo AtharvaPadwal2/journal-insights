@@ -18,6 +18,7 @@ def clear_analysis():
 
 model_options = {
     "LogReg · baseline": "logreg",
+    "SVM · improved baseline": "svm",
     "Hartmann · includes neutral": "hartmann",
 }
 
@@ -120,12 +121,12 @@ if result:
                 ),
             },
         )
+    elif result.get("model_clues_available", True):
+        st.info("No positive model clues found for this entry.")
     else:
-        if result.get("model_clues_available", True):
-         st.info("No positive model clues found for this entry.")
-else:
-    st.info("Word contribution explanations are available for LogReg only.")
-
+        st.info(
+            "Word contribution explanations are available for LogReg only."
+        )
     st.subheader("Themes and keywords")
     st.caption("Themes use keyword matching; keywords use word frequency.")
 
@@ -169,11 +170,19 @@ else:
             st.write(reflection["question"])
 
         st.caption("A curated reflection prompt, not treatment advice.")
-    with st.expander("View emotion model scores"):
-        st.caption(
-            "Uncalibrated model scores—not emotional percentages. "
-            "This classifier predicts one emotion label per text."
-        )
+        with st.expander("View emotion model scores"):
+         if result["emotion_model"] == "svm":
+            st.caption(
+                "SVM scores are decision margins, not probabilities. "
+                "Negative values are normal; the highest margin "
+                "determines the predicted label."
+            )
+         else:
+            st.caption(
+                "Uncalibrated model scores—not emotional percentages. "
+                "This classifier predicts one emotion label per text."
+            )
+
         st.bar_chart(result["overall"]["scores"])
 
     st.caption(
