@@ -26,6 +26,19 @@ def load_model():
     return joblib.load(path)
 
 
+
+@lru_cache(maxsize=1)
+def load_svm():
+    path = ROOT / "models" / "emotion_svm.joblib"
+
+    if not path.exists():
+        raise FileNotFoundError(
+            "SVM model missing. Run train_svm.py first."
+        )
+
+    return joblib.load(path)
+
+
 @lru_cache(maxsize=1)
 def load_hartmann():
     from transformers import (
@@ -81,6 +94,22 @@ def predict_logreg(texts):
         class_scores = {
             labels[int(class_id)]: float(score)
             for class_id, score in zip(model.classes_, scores)
+        }
+        predictions.append(format_prediction(class_scores))
+
+    return predictions, saved["metadata"]
+
+def predict_svm(texts):
+    saved = load_svm()
+    model = saved["pipeline"]
+    labels = saved["labels"]
+
+    predictions = []
+
+    for margins in model.decision_function(texts):
+        class_scores = {
+            labels[int(class_id)]: float(margin)
+            for class_id, margin in zip(model.classes_, margins)
         }
         predictions.append(format_prediction(class_scores))
 
@@ -151,7 +180,7 @@ def analyze_text(text, emotion_model="logreg"):
             f"{MAX_CHARACTERS:,} characters."
         )
 
-    if emotion_model not in {"logreg", "hartmann"}:
+    if emotion_model not in {"logreg", "svm", "hartmann"}:
         raise ValueError("Unknown emotion model.")
 
     text = text.strip()
@@ -168,6 +197,9 @@ def analyze_text(text, emotion_model="logreg"):
     if emotion_model == "logreg":
         predictions, metadata = predict_logreg(texts)
         clues = get_model_clues(text, load_model()["pipeline"])
+    elif emotion_model == "svm":
+        predictions, metadata = predict_svm(texts)
+        clues = []
     else:
         predictions, metadata = predict_hartmann(texts)
         clues = []
@@ -232,6 +264,11 @@ def analyze_text(text, emotion_model="logreg"):
         notes.append(
             "Hartmann supports neutral and disgust, "
             "but has no love class."
+        )
+    elif emotion_model == "svm":
+        notes.append(
+            "SVM has no neutral class. Its scores are "
+            "uncalibrated decision margins, not probabilities."
         )
     else:
         notes.append(
