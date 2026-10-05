@@ -5,6 +5,7 @@ import json
 import joblib
 import sklearn
 from datasets import load_from_disk
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
@@ -60,7 +61,29 @@ def main():
 
     print(f"Training on {len(train)} examples...")
     start = perf_counter()
-    model.fit(train["text"], train["label"])
+    search = GridSearchCV(
+        estimator=model,
+        param_grid={
+            "classifier__C": [0.25, 0.5, 1.0, 2.0, 4.0],
+            "classifier__class_weight": [None, "balanced"],
+        },
+        scoring="f1_macro",
+        cv=StratifiedKFold(
+            n_splits=3,
+            shuffle=True,
+            random_state=42,
+        ),
+        n_jobs=2,
+        verbose=1,
+        refit=True,
+        error_score="raise",
+    )
+
+    search.fit(train["text"], train["label"])
+    model = search.best_estimator_
+
+    print("Best parameters:", search.best_params_)
+    print(f"Best CV Macro F1: {search.best_score_:.4f}")
     training_seconds = perf_counter() - start
 
     predictions = model.predict(validation["text"])
@@ -73,7 +96,6 @@ def main():
         average="macro",
         zero_division=0,
     )
-
     report = {
         "model": "TF-IDF + LinearSVC",
         "dataset": "DAIR-AI Emotion — cleaned split configuration",
@@ -84,6 +106,10 @@ def main():
         "accuracy": float(accuracy),
         "macro_f1": float(macro_f1),
         "training_seconds": training_seconds,
+        "best_parameters": search.best_params_,
+        "best_cv_macro_f1": float(search.best_score_),
+        "cv_folds": 3,
+        "selection_metric": "f1_macro",
         "sklearn_version": sklearn.__version__,
         "classification_report": classification_report(
             validation["label"],
@@ -100,18 +126,22 @@ def main():
         ).tolist(),
     }
 
-    # Compare the saved baseline on exactly the same validation rows.
+    # Compare the saved LogReg baseline on the same validation rows.
     if BASELINE_PATH.exists():
         baseline = joblib.load(BASELINE_PATH)
+
         if baseline["labels"] != labels:
             raise ValueError("Baseline label mapping does not match.")
 
         baseline_predictions = baseline["pipeline"].predict(
             validation["text"]
         )
+
         baseline_accuracy = accuracy_score(
-            validation["label"], baseline_predictions
+            validation["label"],
+            baseline_predictions,
         )
+
         baseline_f1 = f1_score(
             validation["label"],
             baseline_predictions,
@@ -146,7 +176,9 @@ def main():
             "labels": labels,
             "metadata": {
                 "model_name": "tfidf_linear_svc",
-                "version": "baseline-svm-1",
+                "version": "tuned-svm-1",
+                "best_parameters": search.best_params_,
+                "best_cv_macro_f1": float(search.best_score_),
                 "sklearn_version": sklearn.__version__,
                 "dataset": report["dataset"],
                 "score_type": "uncalibrated decision margins",
@@ -160,9 +192,12 @@ def main():
         encoding="utf-8",
     )
 
-    print(f"\nValidation accuracy: {accuracy:.4f}")
+    print(f"\nBest parameters: {search.best_params_}")
+    print(f"Best CV Macro F1: {search.best_score_:.4f}")
+    print(f"Validation accuracy: {accuracy:.4f}")
     print(f"Validation Macro F1: {macro_f1:.4f}")
-    print(f"Training time: {training_seconds:.2f} seconds")
+    print(f"Training and tuning time: {training_seconds:.2f} seconds")
+
     print(classification_report(
         validation["label"],
         predictions,
