@@ -12,7 +12,23 @@ st.title("🌿 Journal Insights")
 st.caption("Explore emotions expressed in your English journal text.")
 st.caption("Entries are not saved by this application.")
 
+def clear_analysis():
+    st.session_state.pop("analysis", None)
 
+
+model_options = {
+    "LogReg · baseline": "logreg",
+    "Hartmann · includes neutral": "hartmann",
+}
+
+selected_model = st.selectbox(
+    "Emotion model",
+    options=list(model_options),
+    key="emotion_model_selection",
+    on_change=clear_analysis,
+)
+
+emotion_model = model_options[selected_model]
 def clear_entry():
     st.session_state["journal_text"] = ""
     st.session_state.pop("analysis", None)
@@ -48,8 +64,9 @@ if analyze_clicked:
     try:
         with st.spinner("Analyzing your text..."):
             st.session_state["analysis"] = analyze_text(
-                st.session_state["journal_text"]
-            )
+    st.session_state["journal_text"],
+    emotion_model=emotion_model,
+)
     except (ValueError, FileNotFoundError) as error:
         st.warning(str(error))
 
@@ -104,7 +121,10 @@ if result:
             },
         )
     else:
-        st.info("No positive model clues found for this entry.")
+        if result.get("model_clues_available", True):
+         st.info("No positive model clues found for this entry.")
+else:
+    st.info("Word contribution explanations are available for LogReg only.")
 
     st.subheader("Themes and keywords")
     st.caption("Themes use keyword matching; keywords use word frequency.")
