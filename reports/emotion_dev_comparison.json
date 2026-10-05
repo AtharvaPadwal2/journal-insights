@@ -19,7 +19,12 @@
     "LinearSVC": {
       "model_metadata": {
         "model_name": "tfidf_linear_svc",
-        "version": "baseline-svm-1",
+        "version": "tuned-svm-1",
+        "best_parameters": {
+          "classifier__C": 0.5,
+          "classifier__class_weight": "balanced"
+        },
+        "best_cv_macro_f1": 0.8558529830790302,
         "sklearn_version": "1.9.1",
         "dataset": "DAIR-AI Emotion — cleaned split configuration",
         "score_type": "uncalibrated decision margins"
