@@ -1,0 +1,148 @@
+{
+  "model": "TF-IDF + OneVsRest Logistic Regression",
+  "dataset": "SemEval-2018 English E-c",
+  "evaluation_split": "validation",
+  "train_rows": 6836,
+  "validation_rows": 886,
+  "labels": [
+    "anger",
+    "anticipation",
+    "disgust",
+    "fear",
+    "joy",
+    "love",
+    "optimism",
+    "pessimism",
+    "sadness",
+    "surprise",
+    "trust"
+  ],
+  "thresholds": [
+    0.4,
+    0.15000000000000002,
+    0.35,
+    0.25,
+    0.4,
+    0.15000000000000002,
+    0.30000000000000004,
+    0.15000000000000002,
+    0.35,
+    0.1,
+    0.1
+  ],
+  "threshold_selection": "training-only 3-fold OOF",
+  "threshold_selection_f1": {
+    "anger": 0.7172682926829268,
+    "anticipation": 0.3336301573167112,
+    "disgust": 0.6867719802138185,
+    "fear": 0.667550839964633,
+    "joy": 0.7260012714558169,
+    "love": 0.51953125,
+    "optimism": 0.6062210456651225,
+    "pessimism": 0.31513903192584963,
+    "sadness": 0.5663345568956476,
+    "surprise": 0.27597955706984667,
+    "trust": 0.14762741652021089
+  },
+  "macro_f1": 0.48549594770933563,
+  "micro_f1": 0.5875461054458668,
+  "exact_match_accuracy": 0.1433408577878104,
+  "hamming_loss": 0.1950543812846296,
+  "neutral_detection_f1": 0.0,
+  "actual_neutral_rows": 14,
+  "predicted_empty_rows": 11,
+  "classification_report": {
+    "anger": {
+      "precision": 0.6897689768976898,
+      "recall": 0.6634920634920635,
+      "f1-score": 0.6763754045307443,
+      "support": 315.0
+    },
+    "anticipation": {
+      "precision": 0.2112676056338028,
+      "recall": 0.4838709677419355,
+      "f1-score": 0.29411764705882354,
+      "support": 124.0
+    },
+    "disgust": {
+      "precision": 0.564625850340136,
+      "recall": 0.780564263322884,
+      "f1-score": 0.6552631578947369,
+      "support": 319.0
+    },
+    "fear": {
+      "precision": 0.6724137931034483,
+      "recall": 0.6446280991735537,
+      "f1-score": 0.6582278481012658,
+      "support": 121.0
+    },
+    "joy": {
+      "precision": 0.7810650887573964,
+      "recall": 0.66,
+      "f1-score": 0.7154471544715447,
+      "support": 400.0
+    },
+    "love": {
+      "precision": 0.5725190839694656,
+      "recall": 0.5681818181818182,
+      "f1-score": 0.5703422053231939,
+      "support": 132.0
+    },
+    "optimism": {
+      "precision": 0.5923076923076923,
+      "recall": 0.752442996742671,
+      "f1-score": 0.6628407460545194,
+      "support": 307.0
+    },
+    "pessimism": {
+      "precision": 0.2578616352201258,
+      "recall": 0.41,
+      "f1-score": 0.3166023166023166,
+      "support": 100.0
+    },
+    "sadness": {
+      "precision": 0.573170731707317,
+      "recall": 0.5320754716981132,
+      "f1-score": 0.5518590998043053,
+      "support": 265.0
+    },
+    "surprise": {
+      "precision": 0.5,
+      "recall": 0.11428571428571428,
+      "f1-score": 0.18604651162790697,
+      "support": 35.0
+    },
+    "trust": {
+      "precision": 0.0625,
+      "recall": 0.046511627906976744,
+      "f1-score": 0.05333333333333334,
+      "support": 43.0
+    },
+    "micro avg": {
+      "precision": 0.5531045751633987,
+      "recall": 0.6265617769551134,
+      "f1-score": 0.5875461054458668,
+      "support": 2161.0
+    },
+    "macro avg": {
+      "precision": 0.4979545870851885,
+      "recall": 0.5141866384132482,
+      "f1-score": 0.48549594770933563,
+      "support": 2161.0
+    },
+    "weighted avg": {
+      "precision": 0.588918579174098,
+      "recall": 0.6265617769551134,
+      "f1-score": 0.5968844765987286,
+      "support": 2161.0
+    },
+    "samples avg": {
+      "precision": 0.5585214446952597,
+      "recall": 0.6362302483069978,
+      "f1-score": 0.5643945094283696,
+      "support": 2161.0
+    }
+  },
+  "training_seconds": 2.6495802000008553,
+  "sklearn_version": "1.9.1"
+}
