@@ -38,7 +38,128 @@ def load_svm():
 
     return joblib.load(path)
 
+@lru_cache(maxsize=1)
+def load_weighted():
+    path = ROOT / "models" / "emotion_hybrid_journal_weighted.joblib"
 
+    if not path.exists():
+        raise FileNotFoundError(
+            "Weighted model missing. Run train_hybrid_weighted.py first."
+        )
+
+    return joblib.load(path)
+
+
+@lru_cache(maxsize=1)
+def load_weighted_encoder():
+    import torch
+    from sentence_transformers import SentenceTransformer
+
+    saved = load_weighted()
+    metadata = saved["metadata"]
+
+    torch.set_num_threads(2)
+
+    encoder = SentenceTransformer(
+        metadata["encoder"],
+        device="cpu",
+        local_files_only=True,
+    )
+    encoder.max_seq_length = int(metadata["max_seq_length"])
+
+    return encoder
+
+
+def predict_weighted(texts):
+    import numpy as np
+    from scipy.sparse import csr_matrix, hstack
+
+    saved = load_weighted()
+    encoder = load_weighted_encoder()
+    metadata = saved["metadata"]
+    labels = saved["labels"]
+    thresholds = np.asarray(saved["thresholds"], dtype=float)
+
+    if thresholds.shape != (len(labels),):
+        raise ValueError("Weighted model threshold mapping is invalid.")
+
+    for index, text in enumerate(texts):
+        tokens = encoder.tokenizer(
+            text,
+            truncation=False,
+            add_special_tokens=True,
+        )["input_ids"]
+
+        if len(tokens) > encoder.max_seq_length:
+            section = (
+                "Your full entry"
+                if index == 0
+                else f"Sentence {index}"
+            )
+            raise ValueError(
+                f"{section} exceeds the experimental model's "
+                f"{encoder.max_seq_length}-token limit. "
+                "Please shorten it."
+            )
+
+    embeddings = encoder.encode(
+        texts,
+        batch_size=4,
+        normalize_embeddings=metadata["normalize_embeddings"],
+        convert_to_numpy=True,
+        show_progress_bar=False,
+    )
+
+    features = hstack(
+        [
+            saved["vectorizer"].transform(texts),
+            csr_matrix(
+                embeddings * saved["embedding_weight"]
+            ),
+        ],
+        format="csr",
+    )
+
+    scores = np.asarray(
+        saved["classifier"].predict_proba(features)
+    )
+
+    if scores.shape != (len(texts), len(labels)):
+        raise ValueError("Weighted model score mapping is invalid.")
+
+    if not np.isfinite(scores).all():
+        raise ValueError("Weighted model returned invalid scores.")
+
+    predictions = []
+
+    for probabilities in scores:
+        selected = [
+            label
+            for label, score, threshold in zip(
+                labels, probabilities, thresholds
+            )
+            if score >= threshold
+        ]
+
+        predictions.append({
+            # Compatibility with the existing app.
+            "emotion": (
+                ", ".join(selected)
+                if selected
+                else "No labels above threshold"
+            ),
+            "emotions": selected,
+            "scores": {
+                label: float(score)
+                for label, score in zip(labels, probabilities)
+            },
+            "thresholds": {
+                label: float(threshold)
+                for label, threshold in zip(labels, thresholds)
+            },
+        })
+
+    return predictions, metadata
 @lru_cache(maxsize=1)
 def load_hartmann():
     from transformers import (
@@ -67,6 +188,13 @@ def load_hartmann():
 
 
 def split_sentences(text):
+    parts = re.split(r"(?<=[.!?])\s+|\n+", text.strip())
+
+    return [
+        part.strip()
+        for part in parts
+        if part.strip() and any(char.isalnum() for char in part)
+    ]
     parts = re.split(r"(?<=[.!?])\s+|\n+", text.strip())
 
     return [
@@ -180,8 +308,10 @@ def analyze_text(text, emotion_model="logreg"):
             f"{MAX_CHARACTERS:,} characters."
         )
 
-    if emotion_model not in {"logreg", "svm", "hartmann"}:
-        raise ValueError("Unknown emotion model.")
+        if emotion_model not in {
+        "logreg", "svm", "hartmann", "weighted"
+    }:
+         raise ValueError("Unknown emotion model.")
 
     text = text.strip()
     sentences = split_sentences(text)
@@ -199,6 +329,9 @@ def analyze_text(text, emotion_model="logreg"):
         clues = get_model_clues(text, load_model()["pipeline"])
     elif emotion_model == "svm":
         predictions, metadata = predict_svm(texts)
+        clues = []
+    elif emotion_model == "weighted":
+        predictions, metadata = predict_weighted(texts)
         clues = []
     else:
         predictions, metadata = predict_hartmann(texts)
@@ -224,6 +357,10 @@ def analyze_text(text, emotion_model="logreg"):
     )
 
     sentiment = analyze_sentiment(text)
+    for sentence_result in sentence_results:
+        sentence_result["sentiment"] = analyze_sentiment(
+            sentence_result["sentence"]
+        )
     topics = analyze_themes(text)
 
     if emotion_model == "logreg":
@@ -231,12 +368,26 @@ def analyze_text(text, emotion_model="logreg"):
             overall["emotion"],
             topics["themes"],
         )
-        interpretation = build_interpretation(
-            overall,
-            sentiment,
-            sentence_results,
-            topics["themes"],
-        )
+    elif emotion_model == "weighted":
+        reflection = {
+            "question": (
+                "Which part of this entry feels most important "
+                "to you right now?"
+            )
+        }
+
+        if overall["emotions"]:
+            interpretation = (
+                "The experimental model selected these emotion labels: "
+                + ", ".join(overall["emotions"])
+                + ". It may miss feelings or include extra labels."
+            )
+        else:
+            interpretation = (
+                "No emotion labels crossed the experimental model's "
+                "thresholds. This may mean emotions were missed; "
+                "it does not establish that the entry is neutral."
+            )
     else:
         # Existing prompt templates were written for the six-class model.
         reflection = {
@@ -256,24 +407,33 @@ def analyze_text(text, emotion_model="logreg"):
     notes = [
         "English is supported; Hindi/Hinglish reliability is unverified.",
         "Scores are uncalibrated model predictions, not emotional percentages.",
-        "Each emotion model predicts one label per text.",
         "Negation and changes from past to present feelings may be misread.",
     ]
 
-    if emotion_model == "hartmann":
-        notes.append(
-            "Hartmann supports neutral and disgust, "
-            "but has no love class."
-        )
-    elif emotion_model == "svm":
-        notes.append(
-            "SVM has no neutral class. Its scores are "
-            "uncalibrated decision margins, not probabilities."
-        )
+    if emotion_model == "weighted":
+        notes.extend([
+            "Experimental model: journal reliability is not established.",
+            "Multiple emotion labels can be selected using per-label thresholds.",
+            "Scores are not emotion intensities and need not sum to one.",
+            "No labels above threshold does not establish neutrality.",
+        ])
     else:
-        notes.append(
-            "LogReg has no neutral class."
-        )
+        notes.append("This emotion model predicts one label per text.")
+
+        if emotion_model == "hartmann":
+            notes.append(
+                "Hartmann supports neutral and disgust, "
+                "but has no love class."
+            )
+        elif emotion_model == "svm":
+            notes.append(
+                "SVM has no neutral class. Its scores are "
+                "uncalibrated decision margins, not probabilities."
+            )
+        else:
+            notes.append("LogReg has no neutral class.")
+
+    
 
     if len(text.split()) < 3:
         notes.append(
@@ -281,6 +441,9 @@ def analyze_text(text, emotion_model="logreg"):
         )
 
     for note in sentiment.get("notes", []):
+        if note == "LogReg has no neutral class.":
+            continue
+
         if note not in notes:
             notes.append(note)
 
