@@ -12,14 +12,21 @@ st.title("🌿 Journal Insights")
 st.caption("Explore emotions expressed in your English journal text.")
 st.caption("Entries are not saved by this application.")
 
+
 def clear_analysis():
     st.session_state.pop("analysis", None)
+
+
+def clear_entry():
+    st.session_state["journal_text"] = ""
+    clear_analysis()
 
 
 model_options = {
     "LogReg · baseline": "logreg",
     "SVM · improved baseline": "svm",
     "Hartmann · includes neutral": "hartmann",
+    "Experimental · multi-emotion": "weighted",
 }
 
 selected_model = st.selectbox(
@@ -30,10 +37,12 @@ selected_model = st.selectbox(
 )
 
 emotion_model = model_options[selected_model]
-def clear_entry():
-    st.session_state["journal_text"] = ""
-    st.session_state.pop("analysis", None)
 
+if emotion_model == "weighted":
+    st.caption(
+        "Experimental: supports multiple emotion labels. "
+        "Journal reliability is still being evaluated."
+    )
 
 st.text_area(
     "What’s on your mind?",
@@ -41,6 +50,7 @@ st.text_area(
     height=200,
     max_chars=5000,
     key="journal_text",
+    on_change=clear_analysis,
 )
 
 analyze_column, clear_column = st.columns(2)
@@ -60,14 +70,14 @@ with clear_column:
     )
 
 if analyze_clicked:
-    st.session_state.pop("analysis", None)
+    clear_analysis()
 
     try:
         with st.spinner("Analyzing your text..."):
             st.session_state["analysis"] = analyze_text(
-    st.session_state["journal_text"],
-    emotion_model=emotion_model,
-)
+                st.session_state["journal_text"],
+                emotion_model=emotion_model,
+            )
     except (ValueError, FileNotFoundError) as error:
         st.warning(str(error))
 
@@ -81,21 +91,35 @@ if result:
     emotion_column, sentiment_column = st.columns(2)
 
     with emotion_column:
-        st.metric(
-            "Predicted emotion",
-            result["overall"]["emotion"].title(),
-        )
+        if result["emotion_model"] == "weighted":
+            st.write("**Predicted emotions · experimental**")
+
+            emotions = result["overall"]["emotions"]
+
+            if emotions:
+                st.write(
+                    ", ".join(label.title() for label in emotions)
+                )
+            else:
+                st.write("No labels above threshold")
+                st.caption(
+                    "This does not establish that the entry is neutral."
+                )
+        else:
+            st.metric(
+                "Predicted emotion",
+                result["overall"]["emotion"].title(),
+            )
 
     with sentiment_column:
         st.metric(
             "Sentiment · RoBERTa",
             result["sentiment"]["label"].title(),
         )
-
         st.caption(
-        "Sentiment scores are uncalibrated model predictions, "
-        "not emotional percentages."
-    )
+            "Sentiment scores are uncalibrated model predictions, "
+            "not emotional percentages."
+        )
 
     with st.expander("View sentiment model scores"):
         st.bar_chart(result["sentiment"]["scores"])
@@ -125,10 +149,14 @@ if result:
         st.info("No positive model clues found for this entry.")
     else:
         st.info(
-            "Word contribution explanations are available for LogReg only."
+            "Word contribution explanations are available "
+            "for LogReg only."
         )
+
     st.subheader("Themes and keywords")
-    st.caption("Themes use keyword matching; keywords use word frequency.")
+    st.caption(
+        "Themes use keyword matching; keywords use word frequency."
+    )
 
     topics = result.get("topics", {})
     themes = topics.get("themes", [])
@@ -152,15 +180,73 @@ if result:
         )
     else:
         st.caption("No useful keywords found.")
+
     st.subheader("Sentence by sentence")
 
     for index, sentence in enumerate(result["sentences"], start=1):
         with st.container(border=True):
-            st.write(
-                f"Sentence {index} · "
-                f"{sentence['emotion'].title()}"
-            )
+            if result["emotion_model"] == "weighted":
+                sentence_emotions = sentence["emotions"]
+                label_text = (
+                    ", ".join(
+                        label.title() for label in sentence_emotions
+                    )
+                    if sentence_emotions
+                    else "No labels above threshold"
+                )
+            else:
+                label_text = sentence["emotion"].title()
+
+            st.write(f"Sentence {index} · {label_text}")
             st.text(sentence["sentence"])
+            sentence_sentiment = sentence.get("sentiment")
+
+            if sentence_sentiment:
+                st.caption(
+                    "Sentence sentiment · RoBERTa: "
+                    + sentence_sentiment["label"].title()
+                )
+
+    if result["emotion_model"] == "weighted":
+        st.caption(
+            "Sentence labels and whole-entry labels may differ. "
+            "An empty selection does not establish neutrality."
+        )
+
+    if result["emotion_model"] == "weighted":
+        st.subheader("Emotions selected across sentences")
+        st.caption(
+            "These are sentence-level model selections, "
+            "not a new whole-entry prediction. "
+            "They may include incorrect labels."
+        )
+
+        emotion_sentences = {}
+
+        for index, sentence in enumerate(
+            result["sentences"], start=1
+        ):
+            for label in sentence["emotions"]:
+                emotion_sentences.setdefault(label, []).append(index)
+
+        if emotion_sentences:
+            st.dataframe(
+                [
+                    {
+                        "Emotion": label.title(),
+                        "Sentence numbers": ", ".join(
+                            str(number) for number in numbers
+                        ),
+                    }
+                    for label, numbers in emotion_sentences.items()
+                ],
+                hide_index=True,
+                use_container_width=True,
+            )
+        else:
+            st.info(
+                "No sentence-level labels crossed their thresholds."
+            )
     st.subheader("A moment to reflect")
 
     reflection = result.get("reflection", {})
@@ -169,17 +255,56 @@ if result:
         with st.container(border=True):
             st.write(reflection["question"])
 
-        st.caption("A curated reflection prompt, not treatment advice.")
-        with st.expander("View emotion model scores"):
-         if result["emotion_model"] == "svm":
+        st.caption(
+            "A curated reflection prompt, not treatment advice."
+        )
+
+    with st.expander("View emotion model scores"):
+        if result["emotion_model"] == "svm":
             st.caption(
                 "SVM scores are decision margins, not probabilities. "
                 "Negative values are normal; the highest margin "
                 "determines the predicted label."
             )
-         else:
+        elif result["emotion_model"] == "weighted":
             st.caption(
-                "Uncalibrated model scores—not emotional percentages. "
+                "Each label has its own selection threshold. "
+                "Scores are uncalibrated, not emotion intensities, "
+                "and need not sum to one."
+            )
+
+            st.dataframe(
+                [
+                    {
+                        "Emotion": label.title(),
+                        "Score": score,
+                        "Threshold": (
+                            result["overall"]["thresholds"][label]
+                        ),
+                        "Selected": (
+                            label in result["overall"]["emotions"]
+                        ),
+                    }
+                    for label, score in (
+                        result["overall"]["scores"].items()
+                    )
+                ],
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "Score": st.column_config.NumberColumn(
+                        "Score",
+                        format="%.3f",
+                    ),
+                    "Threshold": st.column_config.NumberColumn(
+                        "Threshold",
+                        format="%.2f",
+                    ),
+                },
+            )
+        else:
+            st.caption(
+                "Uncalibrated model scores, not emotional percentages. "
                 "This classifier predicts one emotion label per text."
             )
 
@@ -193,5 +318,6 @@ if result:
         st.caption(note)
 
     st.caption(
-        "This analyzes text; it does not diagnose mental-health conditions."
+        "This analyzes text; it does not diagnose "
+        "mental-health conditions."
     )
