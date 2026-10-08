@@ -12,8 +12,13 @@ THEMES = {
     ],
     "Work and deadlines": [
         "work", "job", "office", "deadline", "deadlines",
-        "meeting", "meetings", "manager", "colleague",
-        "colleagues", "internship", "teammate", "teammates",
+        "manager", "colleague", "colleagues", "internship",
+        "team meeting", "team meetings",
+        "work meeting", "work meetings",
+        "office meeting", "office meetings",
+        "client meeting", "client meetings",
+        "staff meeting", "staff meetings",
+        "project deadline", "project deadlines",
     ],
     "Friends and relationships": [
         "friend", "friends", "friendship", "partner",
