@@ -16,15 +16,22 @@ from train_hybrid_classifier import (
     normalize_text,
     read_csv,
 )
-
-CSV_PATH = ROOT / "data/evaluation/journal_human_validation.csv"
-REPORT_PATH = ROOT / "reports/journal_weighted_comparison.json"
-
 MODEL_PATHS = {
-    "previous_precision": ROOT / "models/emotion_hybrid_precision.joblib",
-    "journal_pilot": ROOT / "models/emotion_hybrid_journal_pilot.joblib",
-    "journal_weighted": ROOT / "models/emotion_hybrid_journal_weighted.joblib",
+    "previous_precision": (
+        ROOT / "models/emotion_hybrid_precision.joblib"
+    ),
+    "journal_pilot": (
+        ROOT / "models/emotion_hybrid_journal_pilot.joblib"
+    ),
+    "journal_weighted": (
+        ROOT / "models/emotion_hybrid_journal_weighted.joblib"
+    ),
 }
+CSV_PATH = ROOT / "data/evaluation/journal_fresh_validation.csv"
+REPORT_PATH = ROOT / "reports/journal_fresh_comparison.json"
+OLD_VALIDATION_CSV = (
+    ROOT / "data/evaluation/journal_human_validation.csv"
+)
 
 
 def main():
@@ -49,7 +56,11 @@ def main():
 
     # Check exact normalized-text overlap with known development data.
     blocked = set()
-    for path in (TRAINING_CSV, DIAGNOSTIC_CSV):
+    for path in (
+        TRAINING_CSV,
+        DIAGNOSTIC_CSV,
+        OLD_VALIDATION_CSV,
+    ):
         blocked.update(
             normalize_text(row["text"])
             for row in read_csv(path)
@@ -234,7 +245,11 @@ def main():
     print("No training or threshold changes performed.")
     print("Test split not loaded; paraphrases not automatically checked.")
     print("Empty predictions do not establish neutrality.")
-    print("Twenty entries provide preliminary evidence only.")
+    print(
+        f"{len(usable)} reviewed entries evaluated. "
+        "Results apply to this sample; journal-wide accuracy "
+        "is not established."
+    )
 
 
 if __name__ == "__main__":
