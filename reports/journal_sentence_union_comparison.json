@@ -1,0 +1,357 @@
+{
+  "validation_sha256": "a8234ad4c1c30ff12ed8070fefeb9ca8af6a7d90cf1f86ae3037b4d4393a6ceb",
+  "evaluated_rows": 190,
+  "skipped_rows": 10,
+  "labels": [
+    "anger",
+    "anticipation",
+    "disgust",
+    "fear",
+    "joy",
+    "love",
+    "optimism",
+    "pessimism",
+    "sadness",
+    "surprise",
+    "trust"
+  ],
+  "source_counts": {
+    "ai_synthetic": 190
+  },
+  "label_support": {
+    "anger": 24,
+    "anticipation": 18,
+    "disgust": 15,
+    "fear": 28,
+    "joy": 31,
+    "love": 18,
+    "optimism": 21,
+    "pessimism": 19,
+    "sadness": 28,
+    "surprise": 18,
+    "trust": 20
+  },
+  "models": {
+    "journal_expanded": {
+      "metrics": {
+        "macro_f1": 0.6260201521040917,
+        "micro_f1": 0.6357615894039735,
+        "exact_match_accuracy": 0.4368421052631579,
+        "hamming_loss": 0.07894736842105263,
+        "neutral_detection_f1": 0.5428571428571428,
+        "classification_report": {
+          "anger": {
+            "precision": 0.9285714285714286,
+            "recall": 0.5416666666666666,
+            "f1-score": 0.6842105263157895,
+            "support": 24.0
+          },
+          "anticipation": {
+            "precision": 0.5555555555555556,
+            "recall": 0.5555555555555556,
+            "f1-score": 0.5555555555555556,
+            "support": 18.0
+          },
+          "disgust": {
+            "precision": 0.5555555555555556,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.4166666666666667,
+            "support": 15.0
+          },
+          "fear": {
+            "precision": 0.8823529411764706,
+            "recall": 0.5357142857142857,
+            "f1-score": 0.6666666666666666,
+            "support": 28.0
+          },
+          "joy": {
+            "precision": 0.7096774193548387,
+            "recall": 0.7096774193548387,
+            "f1-score": 0.7096774193548387,
+            "support": 31.0
+          },
+          "love": {
+            "precision": 0.7857142857142857,
+            "recall": 0.6111111111111112,
+            "f1-score": 0.6875,
+            "support": 18.0
+          },
+          "optimism": {
+            "precision": 0.5882352941176471,
+            "recall": 0.47619047619047616,
+            "f1-score": 0.5263157894736842,
+            "support": 21.0
+          },
+          "pessimism": {
+            "precision": 0.65,
+            "recall": 0.6842105263157895,
+            "f1-score": 0.6666666666666666,
+            "support": 19.0
+          },
+          "sadness": {
+            "precision": 0.6,
+            "recall": 0.6428571428571429,
+            "f1-score": 0.6206896551724138,
+            "support": 28.0
+          },
+          "surprise": {
+            "precision": 0.5,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.625,
+            "support": 18.0
+          },
+          "trust": {
+            "precision": 0.9230769230769231,
+            "recall": 0.6,
+            "f1-score": 0.7272727272727273,
+            "support": 20.0
+          },
+          "micro avg": {
+            "precision": 0.676056338028169,
+            "recall": 0.6,
+            "f1-score": 0.6357615894039735,
+            "support": 240.0
+          },
+          "macro avg": {
+            "precision": 0.6980672184657005,
+            "recall": 0.5930590773120484,
+            "f1-score": 0.6260201521040917,
+            "support": 240.0
+          },
+          "weighted avg": {
+            "precision": 0.7101344448035625,
+            "recall": 0.6,
+            "f1-score": 0.6358615934755908,
+            "support": 240.0
+          },
+          "samples avg": {
+            "precision": 0.5311403508771929,
+            "recall": 0.5692982456140351,
+            "f1-score": 0.5247368421052632,
+            "support": 240.0
+          }
+        },
+        "supported_labels_macro_f1": 0.6260201521040917
+      },
+      "thresholds": [
+        0.6,
+        0.3,
+        0.5499999999999999,
+        0.49999999999999994,
+        0.6,
+        0.44999999999999996,
+        0.5499999999999999,
+        0.3,
+        0.44999999999999996,
+        0.25,
+        0.25
+      ],
+      "model_sha256": "60c913b8f5590794120f9730e0da3e349fd004e356cd2080d0537feb1598f822"
+    },
+    "expanded_sentence_union": {
+      "metrics": {
+        "macro_f1": 0.6153501404548629,
+        "micro_f1": 0.6070878274268104,
+        "exact_match_accuracy": 0.25263157894736843,
+        "hamming_loss": 0.12200956937799043,
+        "neutral_detection_f1": 0.6666666666666666,
+        "classification_report": {
+          "anger": {
+            "precision": 0.6333333333333333,
+            "recall": 0.7916666666666666,
+            "f1-score": 0.7037037037037037,
+            "support": 24.0
+          },
+          "anticipation": {
+            "precision": 0.3181818181818182,
+            "recall": 0.7777777777777778,
+            "f1-score": 0.45161290322580644,
+            "support": 18.0
+          },
+          "disgust": {
+            "precision": 0.42857142857142855,
+            "recall": 0.8,
+            "f1-score": 0.5581395348837209,
+            "support": 15.0
+          },
+          "fear": {
+            "precision": 0.875,
+            "recall": 0.5,
+            "f1-score": 0.6363636363636364,
+            "support": 28.0
+          },
+          "joy": {
+            "precision": 0.5555555555555556,
+            "recall": 0.967741935483871,
+            "f1-score": 0.7058823529411765,
+            "support": 31.0
+          },
+          "love": {
+            "precision": 0.7222222222222222,
+            "recall": 0.7222222222222222,
+            "f1-score": 0.7222222222222222,
+            "support": 18.0
+          },
+          "optimism": {
+            "precision": 0.4473684210526316,
+            "recall": 0.8095238095238095,
+            "f1-score": 0.576271186440678,
+            "support": 21.0
+          },
+          "pessimism": {
+            "precision": 0.40540540540540543,
+            "recall": 0.7894736842105263,
+            "f1-score": 0.5357142857142857,
+            "support": 19.0
+          },
+          "sadness": {
+            "precision": 0.4307692307692308,
+            "recall": 1.0,
+            "f1-score": 0.6021505376344086,
+            "support": 28.0
+          },
+          "surprise": {
+            "precision": 0.3018867924528302,
+            "recall": 0.8888888888888888,
+            "f1-score": 0.4507042253521127,
+            "support": 18.0
+          },
+          "trust": {
+            "precision": 0.7307692307692307,
+            "recall": 0.95,
+            "f1-score": 0.8260869565217391,
+            "support": 20.0
+          },
+          "micro avg": {
+            "precision": 0.48166259168704156,
+            "recall": 0.8208333333333333,
+            "f1-score": 0.6070878274268104,
+            "support": 240.0
+          },
+          "macro avg": {
+            "precision": 0.5317330398466988,
+            "recall": 0.8179359077067055,
+            "f1-score": 0.6153501404548629,
+            "support": 240.0
+          },
+          "weighted avg": {
+            "precision": 0.5470266302664516,
+            "recall": 0.8208333333333333,
+            "f1-score": 0.6244393563080393,
+            "support": 240.0
+          },
+          "samples avg": {
+            "precision": 0.48149122807017536,
+            "recall": 0.7368421052631579,
+            "f1-score": 0.5481704260651629,
+            "support": 240.0
+          }
+        }
+      },
+      "thresholds": [
+        0.6,
+        0.3,
+        0.5499999999999999,
+        0.49999999999999994,
+        0.6,
+        0.44999999999999996,
+        0.5499999999999999,
+        0.3,
+        0.44999999999999996,
+        0.25,
+        0.25
+      ],
+      "model_sha256": "60c913b8f5590794120f9730e0da3e349fd004e356cd2080d0537feb1598f822",
+      "aggregation": "Union of sentence labels using saved thresholds; whole-entry labels excluded",
+      "sentence_count": 537,
+      "sentence_split_pattern": "(?<=[.!?])\\s+|\\n+"
+    }
+  },
+  "category_results": {
+    "single_emotion": {
+      "evaluated_rows": 88,
+      "models": {
+        "journal_expanded": {
+          "micro_f1": 0.6766169154228856,
+          "exact_matches": 40,
+          "missed_labels": 20,
+          "extra_labels": 45
+        },
+        "expanded_sentence_union": {
+          "micro_f1": 0.5277777777777778,
+          "exact_matches": 17,
+          "missed_labels": 12,
+          "extra_labels": 124
+        }
+      }
+    },
+    "mixed_emotions": {
+      "evaluated_rows": 40,
+      "models": {
+        "journal_expanded": {
+          "micro_f1": 0.6811594202898551,
+          "exact_matches": 14,
+          "missed_labels": 37,
+          "extra_labels": 7
+        },
+        "expanded_sentence_union": {
+          "micro_f1": 0.7346938775510204,
+          "exact_matches": 10,
+          "missed_labels": 12,
+          "extra_labels": 40
+        }
+      }
+    },
+    "emotional_transitions": {
+      "evaluated_rows": 28,
+      "models": {
+        "journal_expanded": {
+          "micro_f1": 0.5476190476190477,
+          "exact_matches": 6,
+          "missed_labels": 33,
+          "extra_labels": 5
+        },
+        "expanded_sentence_union": {
+          "micro_f1": 0.6902654867256637,
+          "exact_matches": 7,
+          "missed_labels": 17,
+          "extra_labels": 18
+        }
+      }
+    },
+    "negation_and_contrast": {
+      "evaluated_rows": 14,
+      "models": {
+        "journal_expanded": {
+          "micro_f1": 0.42857142857142855,
+          "exact_matches": 5,
+          "missed_labels": 6,
+          "extra_labels": 10
+        },
+        "expanded_sentence_union": {
+          "micro_f1": 0.45454545454545453,
+          "exact_matches": 2,
+          "missed_labels": 2,
+          "extra_labels": 22
+        }
+      }
+    },
+    "neutral_routine": {
+      "evaluated_rows": 20,
+      "models": {
+        "journal_expanded": {
+          "micro_f1": 0.0,
+          "exact_matches": 18,
+          "missed_labels": 0,
+          "extra_labels": 2
+        },
+        "expanded_sentence_union": {
+          "micro_f1": 0.0,
+          "exact_matches": 12,
+          "missed_labels": 0,
+          "extra_labels": 8
+        }
+      }
+    }
+  }
+}
