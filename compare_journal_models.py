@@ -17,18 +17,11 @@ from train_hybrid_classifier import (
     read_csv,
 )
 MODEL_PATHS = {
-    "previous_precision": (
-        ROOT / "models/emotion_hybrid_precision.joblib"
-    ),
-    "journal_pilot": (
-        ROOT / "models/emotion_hybrid_journal_pilot.joblib"
-    ),
-    "journal_weighted": (
-        ROOT / "models/emotion_hybrid_journal_weighted.joblib"
-    ),
+    "journal_expanded": ROOT / "models/emotion_hybrid_journal_expanded.joblib",
+    "journal_targeted": ROOT / "models/emotion_hybrid_journal_targeted.joblib",
 }
 CSV_PATH = ROOT / "data/evaluation/journal_fresh_validation.csv"
-REPORT_PATH = ROOT / "reports/journal_fresh_comparison.json"
+REPORT_PATH = ROOT / "reports/journal_targeted_comparison.json"
 OLD_VALIDATION_CSV = (
     ROOT / "data/evaluation/journal_human_validation.csv"
 )
@@ -41,7 +34,7 @@ def main():
         for name, path in MODEL_PATHS.items()
     }
 
-    reference = models["previous_precision"]
+    reference = models["journal_expanded"]
     labels = reference["labels"]
     metadata = reference["metadata"]
 
@@ -58,6 +51,7 @@ def main():
     blocked = set()
     for path in (
         TRAINING_CSV,
+        ROOT / "data/annotation/journal_training_expanded.csv",
         DIAGNOSTIC_CSV,
         OLD_VALIDATION_CSV,
     ):
@@ -217,7 +211,95 @@ def main():
             "neutral_detection_f1",
         ):
             print(f"{metric}: {metrics[metric]:.4f}")
+        # Categories follow the original evaluation-generation ID ranges.
+    # These are intended categories, not independently verified tags.
+    category_ranges = {
+        "single_emotion": (1, 88),
+        "mixed_emotions": (89, 128),
+        "emotional_transitions": (129, 160),
+        "negation_and_contrast": (161, 180),
+        "neutral_routine": (181, 200),
+    }
 
+    report["category_results"] = {}
+
+    print("\nCATEGORY BREAKDOWN")
+
+    for category, (first_id, last_id) in category_ranges.items():
+        indices = []
+
+        for index, row in enumerate(usable):
+            entry_id = row["id"]
+
+            if (
+                entry_id.startswith("jfv")
+                and entry_id[3:].isdigit()
+                and first_id <= int(entry_id[3:]) <= last_id
+            ):
+                indices.append(index)
+
+        if not indices:
+            continue
+
+        category_targets = targets[indices]
+        category_result = {
+            "evaluated_rows": len(indices),
+            "models": {},
+        }
+
+        print(f"\n{category}: {len(indices)} entries")
+
+        for name in ("journal_expanded", "journal_targeted"):
+            category_predictions = all_predictions[name][indices]
+
+            true_positives = int(np.sum(
+                (category_targets == 1)
+                & (category_predictions == 1)
+            ))
+            missed_labels = int(np.sum(
+                (category_targets == 1)
+                & (category_predictions == 0)
+            ))
+            extra_labels = int(np.sum(
+                (category_targets == 0)
+                & (category_predictions == 1)
+            ))
+            exact_matches = int(np.sum(
+                np.all(
+                    category_targets == category_predictions,
+                    axis=1,
+                )
+            ))
+
+            denominator = (
+                2 * true_positives + missed_labels + extra_labels
+            )
+            micro_f1 = (
+                2 * true_positives / denominator
+                if denominator else None
+            )
+
+            category_result["models"][name] = {
+                "micro_f1": micro_f1,
+                "exact_matches": exact_matches,
+                "missed_labels": missed_labels,
+                "extra_labels": extra_labels,
+            }
+
+            f1_text = (
+                f"{micro_f1:.4f}"
+                if micro_f1 is not None
+                else "N/A"
+            )
+
+            print(
+                f"{name}: micro_F1={f1_text}"
+                f" | exact={exact_matches}/{len(indices)}"
+                f" | missed={missed_labels}"
+                f" | extra={extra_labels}"
+            )
+
+        report["category_results"][category] = category_result
     print("\nENTRY COMPARISON")
     for index, row in enumerate(usable):
         print(f"\n{row['id']}")
