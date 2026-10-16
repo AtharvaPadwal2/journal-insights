@@ -36,8 +36,8 @@
     0.25,
     0.2
   ],
-  "journal_encoding_seconds": 0.5066860000006272,
-  "training_and_cv_seconds": 24.306793700000526,
+  "journal_encoding_seconds": 2.899925200000098,
+  "training_and_cv_seconds": 36.1245828000001,
   "sklearn_version": "1.9.1",
   "cache_metadata": {
     "encoder": "sentence-transformers/all-MiniLM-L6-v2",
