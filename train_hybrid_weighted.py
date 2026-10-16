@@ -27,13 +27,17 @@ from sklearn.pipeline import Pipeline
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data/processed/semeval2018/clean"
 CACHE_DIR = ROOT / "data/processed/semeval2018/embeddings_minilm"
-
-TRAINING_CSV = ROOT / "data/annotation/journal_training.csv"
+TRAINING_CSV = ROOT / "data/annotation/journal_training_expanded.csv"
 DIAGNOSTIC_CSV = ROOT / "data/annotation/journal_labels.csv"
 
-MODEL_PATH = ROOT / "models/emotion_hybrid_journal_weighted.joblib"
-REPORT_PATH = ROOT / "reports/hybrid_journal_weighted_validation.json"
-BASELINE_REPORT = ROOT / "reports/hybrid_precision_validation.json"
+EVALUATION_CSVS = (
+    ROOT / "data/evaluation/journal_human_validation.csv",
+    ROOT / "data/evaluation/journal_fresh_validation.csv",
+)
+
+MODEL_PATH = ROOT / "models/emotion_hybrid_journal_expanded.joblib"
+REPORT_PATH = ROOT / "reports/hybrid_journal_expanded_validation.json"
+BASELINE_REPORT = ROOT / "reports/hybrid_journal_weighted_validation.json"
 
 
 def normalize_text(text):
@@ -273,6 +277,34 @@ def main():
 
     journal_records, skipped = load_journal_candidates(labels)
     diagnostic_records = read_csv(DIAGNOSTIC_CSV)
+    evaluation_records = []
+
+    for path in EVALUATION_CSVS:
+        evaluation_records.extend(read_csv(path))
+
+    evaluation_texts = {
+        normalize_text(row["text"])
+        for row in evaluation_records
+    }
+    evaluation_ids = {
+        row["id"].strip()
+        for row in evaluation_records
+    }
+    evaluation_groups = {
+        row["group_id"].strip()
+        for row in evaluation_records
+    }
+
+    for row in journal_records:
+        if (
+            normalize_text(row["text"]) in evaluation_texts
+            or row["id"] in evaluation_ids
+            or row["group_id"] in evaluation_groups
+        ):
+            raise ValueError(
+                f"{row['id']}: training entry overlaps "
+                "evaluation text, ID, or group."
+            )
 
     # Exact normalized-text checks do not detect paraphrases.
     blocked_texts = {
@@ -489,6 +521,7 @@ def main():
             "normalized_text": "train, validation, diagnostic",
             "diagnostic_ids_and_groups": "checked",
             "paraphrases": "not checked",
+            "journal_evaluation_text_ids_groups": "checked",
             "test": "not loaded or checked",
         },
         "fixed_0_5": evaluate(
@@ -540,7 +573,7 @@ def main():
         "labels": labels,
         "thresholds": thresholds.tolist(),
         "metadata": {
-            "version": "hybrid-journal-weighted-1",
+            "version": "hybrid-journal-expanded-1",
             "journal_sample_weight": 3.0,
             "encoder": metadata["encoder"],
             "normalize_embeddings": normalize_embeddings,
