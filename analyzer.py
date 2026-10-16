@@ -40,11 +40,11 @@ def load_svm():
 
 @lru_cache(maxsize=1)
 def load_weighted():
-    path = ROOT / "models" / "emotion_hybrid_journal_weighted.joblib"
+    path = ROOT / "models" / "emotion_hybrid_journal_targeted.joblib"
 
     if not path.exists():
         raise FileNotFoundError(
-            "Weighted model missing. Run train_hybrid_weighted.py first."
+            "Expanded model missing. Run train_hybrid_expanded.py first."
         )
 
     return joblib.load(path)
