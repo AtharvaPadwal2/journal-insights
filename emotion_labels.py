@@ -14,6 +14,8 @@ CORE_EMOTIONS = [
 
 EXTRA_EMOTIONS = [
     "love",
+    "optimism",
+    "pessimism",
 ]
 
 EMOTION_LABELS = CORE_EMOTIONS + EXTRA_EMOTIONS
