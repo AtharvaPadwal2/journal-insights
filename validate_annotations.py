@@ -5,7 +5,7 @@ from pathlib import Path
 from emotion_labels import EMOTION_LABELS, ANNOTATION_STATES
 
 ROOT = Path(__file__).resolve().parent
-CSV_PATH = ROOT / "data/annotation/journal_training_batch3.csv"
+CSV_PATH = ROOT / "data/evaluation/journal_independent_test.csv"
 
 REQUIRED_COLUMNS = {
     "id",
