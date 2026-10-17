@@ -17,11 +17,11 @@ from train_hybrid_classifier import (
     read_csv,
 )
 MODEL_PATHS = {
-    "journal_expanded": ROOT / "models/emotion_hybrid_journal_expanded.joblib",
     "journal_targeted": ROOT / "models/emotion_hybrid_journal_targeted.joblib",
+    "journal_targeted_f1": ROOT / "models/emotion_hybrid_journal_targeted_f1.joblib",
 }
 CSV_PATH = ROOT / "data/evaluation/journal_fresh_validation.csv"
-REPORT_PATH = ROOT / "reports/journal_targeted_comparison.json"
+REPORT_PATH = ROOT / "reports/journal_targeted_f1_comparison.json"
 OLD_VALIDATION_CSV = (
     ROOT / "data/evaluation/journal_human_validation.csv"
 )
@@ -34,7 +34,7 @@ def main():
         for name, path in MODEL_PATHS.items()
     }
 
-    reference = models["journal_expanded"]
+    reference = models["journal_targeted"]
     labels = reference["labels"]
     metadata = reference["metadata"]
 
@@ -249,7 +249,7 @@ def main():
 
         print(f"\n{category}: {len(indices)} entries")
 
-        for name in ("journal_expanded", "journal_targeted"):
+        for name in ("journal_targeted", "journal_targeted_f1"):
             category_predictions = all_predictions[name][indices]
 
             true_positives = int(np.sum(
