@@ -1,0 +1,585 @@
+{
+  "evaluated_rows": 50,
+  "skipped_rows": 0,
+  "labels": [
+    "anger",
+    "anticipation",
+    "disgust",
+    "fear",
+    "joy",
+    "love",
+    "optimism",
+    "pessimism",
+    "sadness",
+    "surprise",
+    "trust"
+  ],
+  "thresholds": [
+    0.6,
+    0.3,
+    0.49999999999999994,
+    0.49999999999999994,
+    0.6,
+    0.44999999999999996,
+    0.5499999999999999,
+    0.3,
+    0.44999999999999996,
+    0.25,
+    0.25
+  ],
+  "source_counts": {
+    "human_authored": 50
+  },
+  "model_sha256": "e2083b4d03ed1c1ac681cfd31b423b7493b23f4d25f237cd900b8d117e83dfdb",
+  "evaluation_sha256": "f5b035508c86ef3753e09fae0bd5f60ea6fbc493ab9107e05ed69840c38ecd66",
+  "metrics": {
+    "macro_f1": 0.5207600480327753,
+    "micro_f1": 0.5225225225225225,
+    "micro_precision": 0.6170212765957447,
+    "micro_recall": 0.453125,
+    "exact_match_accuracy": 0.28,
+    "hamming_loss": 0.09636363636363636,
+    "empty_selection_vs_neutral_f1": 0.47619047619047616,
+    "neutral_rows": 5,
+    "neutral_rows_with_empty_selection": 5,
+    "emotional_rows_with_empty_selection": 11,
+    "missed_labels": 35,
+    "extra_labels": 18
+  },
+  "classification_report": {
+    "anger": {
+      "precision": 0.75,
+      "recall": 0.42857142857142855,
+      "f1-score": 0.5454545454545454,
+      "support": 7.0
+    },
+    "anticipation": {
+      "precision": 0.6666666666666666,
+      "recall": 0.4,
+      "f1-score": 0.5,
+      "support": 5.0
+    },
+    "disgust": {
+      "precision": 0.3333333333333333,
+      "recall": 0.2,
+      "f1-score": 0.25,
+      "support": 5.0
+    },
+    "fear": {
+      "precision": 0.6666666666666666,
+      "recall": 0.2857142857142857,
+      "f1-score": 0.4,
+      "support": 7.0
+    },
+    "joy": {
+      "precision": 1.0,
+      "recall": 0.3,
+      "f1-score": 0.46153846153846156,
+      "support": 10.0
+    },
+    "love": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1-score": 0.75,
+      "support": 4.0
+    },
+    "optimism": {
+      "precision": 0.6666666666666666,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.4444444444444444,
+      "support": 6.0
+    },
+    "pessimism": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1-score": 0.8,
+      "support": 4.0
+    },
+    "sadness": {
+      "precision": 1.0,
+      "recall": 0.4444444444444444,
+      "f1-score": 0.6153846153846154,
+      "support": 9.0
+    },
+    "surprise": {
+      "precision": 0.3,
+      "recall": 1.0,
+      "f1-score": 0.46153846153846156,
+      "support": 3.0
+    },
+    "trust": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 4.0
+    },
+    "micro avg": {
+      "precision": 0.6170212765957447,
+      "recall": 0.453125,
+      "f1-score": 0.5225225225225225,
+      "support": 64.0
+    },
+    "macro avg": {
+      "precision": 0.6636363636363636,
+      "recall": 0.512914862914863,
+      "f1-score": 0.5207600480327753,
+      "support": 64.0
+    },
+    "weighted avg": {
+      "precision": 0.7263020833333332,
+      "recall": 0.453125,
+      "f1-score": 0.5120829691142192,
+      "support": 64.0
+    },
+    "samples avg": {
+      "precision": 0.42,
+      "recall": 0.41,
+      "f1-score": 0.3933333333333333,
+      "support": 64.0
+    }
+  },
+  "entry_results": [
+    {
+      "id": "jit001",
+      "expected": [
+        "anger"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit002",
+      "expected": [
+        "anger"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit003",
+      "expected": [
+        "anticipation"
+      ],
+      "predicted": [
+        "anticipation"
+      ]
+    },
+    {
+      "id": "jit004",
+      "expected": [
+        "anticipation"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit005",
+      "expected": [
+        "disgust"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit006",
+      "expected": [
+        "disgust"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit007",
+      "expected": [
+        "fear"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit008",
+      "expected": [
+        "fear"
+      ],
+      "predicted": [
+        "pessimism"
+      ]
+    },
+    {
+      "id": "jit009",
+      "expected": [
+        "joy"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit010",
+      "expected": [
+        "joy"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit011",
+      "expected": [
+        "love"
+      ],
+      "predicted": [
+        "disgust"
+      ]
+    },
+    {
+      "id": "jit012",
+      "expected": [
+        "love"
+      ],
+      "predicted": [
+        "love"
+      ]
+    },
+    {
+      "id": "jit013",
+      "expected": [
+        "optimism"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit014",
+      "expected": [
+        "optimism"
+      ],
+      "predicted": [
+        "optimism",
+        "trust"
+      ]
+    },
+    {
+      "id": "jit015",
+      "expected": [
+        "pessimism"
+      ],
+      "predicted": [
+        "disgust",
+        "pessimism"
+      ]
+    },
+    {
+      "id": "jit016",
+      "expected": [
+        "pessimism"
+      ],
+      "predicted": [
+        "pessimism"
+      ]
+    },
+    {
+      "id": "jit017",
+      "expected": [
+        "sadness"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit018",
+      "expected": [
+        "sadness"
+      ],
+      "predicted": [
+        "sadness"
+      ]
+    },
+    {
+      "id": "jit019",
+      "expected": [
+        "surprise"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit020",
+      "expected": [
+        "trust"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit021",
+      "expected": [
+        "anticipation",
+        "fear"
+      ],
+      "predicted": [
+        "anticipation",
+        "optimism"
+      ]
+    },
+    {
+      "id": "jit022",
+      "expected": [
+        "anger",
+        "sadness"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit023",
+      "expected": [
+        "joy",
+        "love"
+      ],
+      "predicted": [
+        "joy",
+        "love"
+      ]
+    },
+    {
+      "id": "jit024",
+      "expected": [
+        "disgust",
+        "surprise"
+      ],
+      "predicted": [
+        "disgust",
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit025",
+      "expected": [
+        "optimism",
+        "trust"
+      ],
+      "predicted": [
+        "trust"
+      ]
+    },
+    {
+      "id": "jit026",
+      "expected": [
+        "love",
+        "sadness"
+      ],
+      "predicted": [
+        "love",
+        "sadness"
+      ]
+    },
+    {
+      "id": "jit027",
+      "expected": [
+        "anger",
+        "fear"
+      ],
+      "predicted": [
+        "anger"
+      ]
+    },
+    {
+      "id": "jit028",
+      "expected": [
+        "joy",
+        "sadness"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit029",
+      "expected": [
+        "anticipation",
+        "joy"
+      ],
+      "predicted": [
+        "joy",
+        "love"
+      ]
+    },
+    {
+      "id": "jit030",
+      "expected": [
+        "anger",
+        "pessimism"
+      ],
+      "predicted": [
+        "pessimism"
+      ]
+    },
+    {
+      "id": "jit031",
+      "expected": [
+        "fear",
+        "joy"
+      ],
+      "predicted": [
+        "fear"
+      ]
+    },
+    {
+      "id": "jit032",
+      "expected": [
+        "joy",
+        "sadness"
+      ],
+      "predicted": [
+        "fear",
+        "sadness"
+      ]
+    },
+    {
+      "id": "jit033",
+      "expected": [
+        "anger",
+        "sadness"
+      ],
+      "predicted": [
+        "anger"
+      ]
+    },
+    {
+      "id": "jit034",
+      "expected": [
+        "anticipation",
+        "disgust"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit035",
+      "expected": [
+        "optimism",
+        "pessimism"
+      ],
+      "predicted": [
+        "anticipation",
+        "pessimism"
+      ]
+    },
+    {
+      "id": "jit036",
+      "expected": [
+        "joy"
+      ],
+      "predicted": [
+        "joy",
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit037",
+      "expected": [
+        "fear",
+        "trust"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit038",
+      "expected": [
+        "anger",
+        "joy"
+      ],
+      "predicted": [
+        "anger"
+      ]
+    },
+    {
+      "id": "jit039",
+      "expected": [
+        "optimism",
+        "sadness"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit040",
+      "expected": [
+        "disgust",
+        "surprise"
+      ],
+      "predicted": [
+        "surprise"
+      ]
+    },
+    {
+      "id": "jit041",
+      "expected": [
+        "sadness"
+      ],
+      "predicted": [
+        "anger",
+        "sadness"
+      ]
+    },
+    {
+      "id": "jit042",
+      "expected": [
+        "joy"
+      ],
+      "predicted": []
+    },
+    {
+      "id": "jit043",
+      "expected": [
+        "fear"
+      ],
+      "predicted": [
+        "fear"
+      ]
+    },
+    {
+      "id": "jit044",
+      "expected": [
+        "optimism"
+      ],
+      "predicted": [
+        "optimism",
+        "trust"
+      ]
+    },
+    {
+      "id": "jit045",
+      "expected": [
+        "trust"
+      ],
+      "predicted": [
+        "pessimism",
+        "trust"
+      ]
+    },
+    {
+      "id": "jit046",
+      "expected": [],
+      "predicted": []
+    },
+    {
+      "id": "jit047",
+      "expected": [],
+      "predicted": []
+    },
+    {
+      "id": "jit048",
+      "expected": [],
+      "predicted": []
+    },
+    {
+      "id": "jit049",
+      "expected": [],
+      "predicted": []
+    },
+    {
+      "id": "jit050",
+      "expected": [],
+      "predicted": []
+    }
+  ],
+  "training_performed": false,
+  "thresholds_changed": false
+}
