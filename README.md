@@ -1,4 +1,4 @@
-# 🧠 Journal Insights AI
+# Journal Insights AI
 ### Understanding Emotions Through Artificial Intelligence
 
 **Journal Insights AI** is an experimental AI-powered journal analysis system that uses Natural Language Processing (NLP) and Machine Learning to analyze written journal entries, identify emotions, understand sentiment, recognize recurring themes, and generate meaningful insights.
@@ -7,11 +7,11 @@ The project aims to move beyond basic positive and negative sentiment classifica
 
 The long-term vision is to build a privacy-conscious, emotionally aware AI assistant capable of responding to users with contextual, supportive, and personalized reflections.
 
-> **Project Status:** 🚧 Active Development | AI/ML Mini Project
+> **Project Status:**  Active Development | AI/ML Mini Project
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 People often express multiple emotions within a single journal entry. Traditional sentiment analysis systems may classify an entire passage as positive or negative, overlooking the emotional complexity of the text.
 
